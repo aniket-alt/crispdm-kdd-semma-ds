@@ -99,3 +99,21 @@ X = clean_data.drop('Churn', axis=1) # All columns except our target
 y = clean_data['Churn']              # Only the target column
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+### 4. Modeling
+
+Now that our data is prepared, we can begin the modeling phase. Our business problem is to predict a "Yes/No" outcome (Churn/No Churn), which is a **binary classification** task.
+
+**1. Data Splitting:**
+First, we split our entire clean dataset into two parts:
+* **Training Set (80% of data):** The model will learn the patterns of churn from this data.
+* **Test Set (20% of data):** This data is kept in a "lockbox" and is *only* used at the very end to grade the model's performance on unseen data. This prevents the model from "cheating."
+
+```python
+# We use scikit-learn's train_test_split function
+from sklearn.model_selection import train_test_split
+
+X = clean_data.drop('Churn', axis=1) # All columns except our target
+y = clean_data['Churn']              # Only the target column
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
