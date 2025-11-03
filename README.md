@@ -54,7 +54,7 @@ After loading the data, we perform an initial exploratory data analysis (EDA) an
 * **Inconsistent Data:** The `Location` column is a free-text field, resulting in entries like "NY," "New York," and "NYC" that all mean the same thing.
 * **Target Variable Imbalance:** We find that our dataset is highly **imbalanced**. 90% of the rows are `Churn = 0` (Not Churned) and only 10% are `Churn = 1` (Churned). This is a critical discovery, as it will make it hard for a naive model to learn what a "churner" looks like.
 
-* ### 3. Data Preparation
+### 3. Data Preparation
 
 This phase (also called "data wrangling" or "data munging") is where we execute the cleanup plan informed by our Data Understanding. This is often the most time-consuming step (up to 80% of a project) but is critical for building an accurate model.
 
@@ -81,3 +81,21 @@ This is where we use our domain knowledge to create *new* features that will giv
 * **`Churn` (90% "No," 10% "Yes"):** If we train a model on this, it will just learn to "always predict No" and be 90% accurate. To fix this, we will use a technique called **SMOTE (Synthetic Minority Over-sampling TEchnique)** *only on our training data*. This process intelligently creates new, "synthetic" examples of churners to give the model a balanced 50/50 dataset to learn from.
 
 After these steps, we have a clean, complete, and feature-rich dataset ready for the next phase.
+
+### 4. Modeling
+
+Now that our data is prepared, we can begin the modeling phase. Our business problem is to predict a "Yes/No" outcome (Churn/No Churn), which is a **binary classification** task.
+
+**1. Data Splitting:**
+First, we split our entire clean dataset into two parts:
+* **Training Set (80% of data):** The model will learn the patterns of churn from this data.
+* **Test Set (20% of data):** This data is kept in a "lockbox" and is *only* used at the very end to grade the model's performance on unseen data. This prevents the model from "cheating."
+
+```python
+# We use scikit-learn's train_test_split function
+from sklearn.model_selection import train_test_split
+
+X = clean_data.drop('Churn', axis=1) # All columns except our target
+y = clean_data['Churn']              # Only the target column
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
