@@ -99,7 +99,7 @@ X = clean_data.drop('Churn', axis=1) # All columns except our target
 y = clean_data['Churn']              # Only the target column
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
+```
 ### 5. Evaluation
 
 In the modeling phase, we built three models. Now, we must evaluate their performance on the unseen `X_test` data to see which one is best and if it meets our business goals.
