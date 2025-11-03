@@ -3,6 +3,7 @@
 The CRISP-DM (Cross-Industry Standard Process for Data Mining) model is a 6-phase cyclical process that provides a robust framework for managing data science projects.
 
 Medium link: https://medium.com/@aniketanil.naik/a-step-by-step-guide-to-predicting-customer-churn-with-crisp-dm-77feb62164c6
+
 Video tutorial: https://drive.google.com/drive/folders/1iBKyp4gBYIiL5SZmKTl_jErzjbv4tXNZ?usp=sharing
 
 ### 1. Business Understanding
