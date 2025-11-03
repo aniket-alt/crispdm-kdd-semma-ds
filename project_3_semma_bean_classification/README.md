@@ -2,6 +2,8 @@
 
 This project uses the **SEMMA (Sample, Explore, Modify, Model, Assess)** framework to build a multi-class classification model. The goal is to follow this technical workflow to accurately classify a dry bean into one of 7 distinct types based on its shape and size.
 
+Video tutorial: https://drive.google.com/drive/folders/1iBKyp4gBYIiL5SZmKTl_jErzjbv4tXNZ?usp=sharing
+
 ### 1. Sample
 
 The SEMMA process begins with **sampling** the data. The goal is to pull a representative, manageable subset of data from a large repository.
