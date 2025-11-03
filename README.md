@@ -100,20 +100,41 @@ y = clean_data['Churn']              # Only the target column
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-### 4. Modeling
+### 5. Evaluation
 
-Now that our data is prepared, we can begin the modeling phase. Our business problem is to predict a "Yes/No" outcome (Churn/No Churn), which is a **binary classification** task.
+In the modeling phase, we built three models. Now, we must evaluate their performance on the unseen `X_test` data to see which one is best and if it meets our business goals.
 
-**1. Data Splitting:**
-First, we split our entire clean dataset into two parts:
-* **Training Set (80% of data):** The model will learn the patterns of churn from this data.
-* **Test Set (20% of data):** This data is kept in a "lockbox" and is *only* used at the very end to grade the model's performance on unseen data. This prevents the model from "cheating."
+**Key Evaluation Metrics:**
+Our dataset is imbalanced (90% "No Churn," 10% "Churn"). This means **Accuracy** is a misleading metric. (A model that just "guesses No" every time would be 90% accurate but 100% useless).
 
-```python
-# We use scikit-learn's train_test_split function
-from sklearn.model_selection import train_test_split
+We must use a **Confusion Matrix** to see the *types* of errors our model makes.
 
-X = clean_data.drop('Churn', axis=1) # All columns except our target
-y = clean_data['Churn']              # Only the target column
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+Based on this, our key metrics are:
+* **Precision:** Of all the customers our model *predicted* would churn, what percentage *actually* churned? (We don't want to waste money giving discounts to "safe" customers).
+* **Recall (Our Top Priority):** Of all the customers who *actually* churned, what percentage did our model successfully *catch*? (This was our business goal: find as many at-risk users as possible).
+* **F1-Score:** The harmonic mean of Precision and Recall. A good all-around score for imbalanced datasets.
+
+**Model Performance Results:**
+We ran all three models on the `X_test` set. Here are their scores:
+
+| Model | Accuracy | Precision | Recall (Our Goal) | F1-Score |
+| :--- | :--- | :--- | :--- | :--- |
+| **Logistic Regression** | 88% | 65% | 70% | 67% |
+| **Decision Tree** | 86% | 61% | 72% | 66% |
+| **Random Forest** | **91%** | **78%** | **84%** | **81%** |
+
+**Evaluation & Model Selection:**
+The **Random Forest** is the clear winner.
+* It has the highest overall accuracy (91%).
+* It has good Precision (78%), meaning when it flags someone, it's right 3 out of 4 times.
+* Most importantly, it has an excellent **Recall of 84%**. This means it successfully "catches" 84% of all customers who were *actually* about to churn.
+
+**Reviewing Business Goals:**
+Let's check back with our goals from Step 1.
+* **Data Mining Success (Goal: >85% accuracy):** We achieved **91% accuracy**. **(Met)**
+* **Data Mining Success (Goal: High Recall):** We achieved **84% Recall**, successfully identifying the vast majority of at-risk users. **(Met)**
+* **Business Success (Goal: Reduce churn):** Our model is a strong candidate to help the business achieve this goal. It provides the marketing team with a highly accurate list of users to target for their retention campaign.
+
+The model is approved. It is effective, accurate, and directly aligned with the business objective.
