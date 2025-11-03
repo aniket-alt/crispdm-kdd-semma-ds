@@ -1,6 +1,8 @@
 # Project 3: Classifying Dry Beans with the SEMMA Workflow
 
-This project uses the **SEMMA (Sample, Explore, Modify, Model, Assess)** framework to build a multi-class classification model. The goal is to follow this technical workflow to accurately classify a dry bean into one of 7 distinct types based on its shape and size.
+This project uses the **SEMMA (Sample, Explore, Modify, Model, Assess)** framework to build a multi-class classification model. The goal is to follow this technical workflow to accurately classify a dry bean into one of 7 distinct types based on its shape and size
+
+Medium article link: https://medium.com/@aniketanil.naik/classifying-dry-beans-with-the-semma-workflow-e7a50dace5bb
 
 Video tutorial: https://drive.google.com/drive/folders/1iBKyp4gBYIiL5SZmKTl_jErzjbv4tXNZ?usp=sharing
 
