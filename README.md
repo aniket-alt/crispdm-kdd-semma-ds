@@ -138,3 +138,26 @@ Let's check back with our goals from Step 1.
 * **Business Success (Goal: Reduce churn):** Our model is a strong candidate to help the business achieve this goal. It provides the marketing team with a highly accurate list of users to target for their retention campaign.
 
 The model is approved. It is effective, accurate, and directly aligned with the business objective.
+
+### 6. Deployment
+
+We have an evaluated, high-performing model (our Random Forest) that is approved by the business. The final step is to integrate it into the company's operations.
+
+**Deployment Plan:**
+We propose a **phased batch-scoring system**.
+1.  **Initial Rollout (Simple Batch):** We will not start with a complex, real-time API. Our model will be packaged and deployed on a secure cloud server.
+2.  **Nightly Scoring:** A script will run every night at 1 AM. This script will:
+    * Pull the latest data for all *current* subscribers (e.g., `DaysSinceLastLogin`, `AvgWatchTimePerWeek`).
+    * Use our saved Random Forest model to generate a fresh "churn_risk_score" (a probability from 0.0 to 1.0) for every single user.
+    * Save these scores to a new table in the company database.
+3.  **Actionable Dashboard:** This new score table will power a dashboard for the Marketing team. They can log in each morning and see a list of the "Top 500 Highest-Risk Customers."
+4.  **Integration with Marketing Tools:** This list will then be automatically fed into the company's email marketing tool, which will send a targeted "We miss you! Here's a 25% discount" offer to that high-risk group.
+
+**Monitoring & Maintenance (The "Cycle"):**
+Deployment is *not* the end. The CRISP-DM model is a cycle for a reason.
+* **Model Monitoring:** We must continuously monitor our model's performance. Is its accuracy (Recall) dropping over time?
+* **Concept Drift:** Customer behavior changes. The patterns that predict churn today might not be the same patterns that predict churn in six months.
+* **Retraining Plan:** We will schedule our model to be automatically retrained on the *newest* customer data (e.g., the last 3 months) on a quarterly basis. This ensures the model stays "fresh" and adapts to new user trends, starting the CRISP-DM cycle all over again.
+
+---
+---
