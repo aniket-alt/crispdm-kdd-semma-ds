@@ -2,7 +2,7 @@
 
 This project uses the **Knowledge Discovery in Databases (KDD)** methodology to analyze the Ames Housing dataset. The goal is not just to build a model, but to "discover" and "interpret" the key factors that influence a home's final sale price.
 
-
+Video tutorial: https://drive.google.com/drive/folders/1iBKyp4gBYIiL5SZmKTl_jErzjbv4tXNZ?usp=sharing
 
 ### 1. Selection
 
